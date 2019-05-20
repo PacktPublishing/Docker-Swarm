@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+  mongodb:
+    image: mongo:3.2.15
+    networks:
+      - names-demo
+
+  names-demo:
+    image: albertogviana/names-demo:error
+    depends_on:
+      - mongodb
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.5
+      resources:
+         reservations:
+           memory: 20M
+    secrets:
+      - source: config2.yml
+        target: config.yml
+    ports:
+      - 8080:8080/tcp
+    networks:
+      - names-demo
+
+networks:
+  names-demo:
+    external: true
+
+secrets:
+  config2.yml:
+    external: true

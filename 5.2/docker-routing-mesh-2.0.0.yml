@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  docker-routing-mesh:
+    image: albertogviana/docker-routing-mesh:2.0.0
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+      resources:
+         reservations:
+           memory: 20M
+    ports:
+      - 8080:8080/tcp
+    networks:
+      - routing-mesh
+
+networks:
+  routing-mesh:
+    external: true

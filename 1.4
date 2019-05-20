@@ -1,0 +1,27 @@
+docker-machine create -d virtualbox docker01
+
+docker-machine create -d virtualbox docker02
+
+docker-machine stop docker01
+
+docker-machine stop docker02
+
+docker-machine start docker01
+
+docker-machine status docker01
+
+docker-machine status docker02
+
+docker-machine inspect docker01 | jq .
+
+docker-machine ssh docker01
+
+sudo -i
+
+docker-machine stop docker01
+
+docker-machine ls
+
+docker-machine rm -f docker01 docker02
+
+docker-machine ls

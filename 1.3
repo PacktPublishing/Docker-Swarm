@@ -1,0 +1,39 @@
+docker-machine version
+
+docker version
+
+docker-machine ls
+
+docker-machine create -d virtualbox docker01
+
+docker-machine ls
+
+docker-machine env docker01
+
+eval $(docker-machine env docker01)
+
+docker-machine ls
+
+docker run -d --name nginx --rm -p 80:80 nginx:alpine
+
+docker ps
+
+docker-machine ip docker01
+
+curl 192.168.99.100
+
+docker-machine create -d virtualbox docker02
+
+docker-machine ls
+
+docker ps
+
+eval $(docker-machine env docker02)
+
+docker-machine ls
+
+docker ps
+
+docker-machine stop docker01
+
+docker-machine stop docker02
